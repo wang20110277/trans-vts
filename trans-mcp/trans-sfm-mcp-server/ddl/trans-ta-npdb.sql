@@ -81,7 +81,7 @@ CREATE TABLE `sfm_ta_product` (
   `updated_by` varchar(64) DEFAULT NULL COMMENT '修改人',
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `uniq_prd_code` (`prd_code`, `ta_code`) USING BTREE
+  UNIQUE KEY `uniq_prd_code` (`ta_code`,`prd_code`) USING BTREE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 ROW_FORMAT = COMPACT COMMENT = '产品信息表';
 
 CREATE TABLE `sfm_ta_prd_daily` (
@@ -90,11 +90,11 @@ CREATE TABLE `sfm_ta_prd_daily` (
   `cfm_date` int(11) NOT NULL DEFAULT '0' COMMENT '确认日期',
   `ta_code` varchar(9) NOT NULL DEFAULT '' COMMENT 'TA代码',
   `prd_code` varchar(20) NOT NULL DEFAULT '' COMMENT '产品代码',
-  `nav` decimal(20,9) NOT NULL DEFAULT '0.000000000' COMMENT '产品净值',
+  `nav` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '产品净值',
   `seven_rate` decimal(28,8) NOT NULL DEFAULT '0.00000000' COMMENT '七日年化收益率',
   `tenth_income` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '万份单位收益',
   `prd_status` varchar(1) NOT NULL DEFAULT '' COMMENT '产品状态',
-  `tot_nav` decimal(20,9) NOT NULL DEFAULT '0.000000000' COMMENT '产品累计净值',
+  `tot_nav` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '产品累计净值',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uniq_prd_daily` (`iss_date`,`ta_code`,`prd_code`,`cfm_date`) USING BTREE,
   KEY `idx_prd_code_date` (`prd_code`,`iss_date`)
