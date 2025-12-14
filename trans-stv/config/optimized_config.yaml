@@ -1,0 +1,82 @@
+name: 阿雅（trans-stv）- 优化版
+version: 1.0
+
+logging:
+  level: info
+
+# 唤醒词
+WakeWord: 阿雅
+
+interrupt: true
+# 是否开启工具调用
+StartTaskMode: true
+# 具体处理时选择的模块
+selected_module:
+  Recorder: RecorderPyAudio
+  ASR: FunASR
+  VAD: SileroVAD
+  LLM: OllamaLLM
+  TTS: EdgeTTS
+  THG: SadTalker
+  Player: PygameSoundPlayer
+
+Recorder:
+  RecorderPyAudio:
+    output_file: tmp/
+
+VAD:
+  SileroVAD:
+    sampling_rate: 16000
+    threshold: 0.5
+    min_silence_duration_ms: 200  # 如果说话停顿比较长，可以把这个值设置大一些
+
+ASR:
+  FunASR:
+    model_dir: models/SenseVoiceSmall
+    output_file: tmp/
+
+LLM:
+  OllamaLLM:
+    model_name: qwen2:1.5b  # 使用较小但性能良好的模型
+    url: http://localhost:11434
+
+TTS:
+  EdgeTTS:
+    voice: zh-CN-XiaoxiaoNeural
+    output_file: tmp/
+  MacTTS:
+    voice: Tingting
+    output_file: tmp/
+
+THG:
+  SadTalker:
+    model_name: models/sadtalker
+    model_revision: v1.0.0
+    source_image: data/aya.png
+    out_dir: tmp/
+    preprocess: full
+    still_mode: true
+    use_enhancer: false
+    batch_size: 1
+    size: 256
+    pose_style: 0
+    exp_scale: 1
+
+Player:
+  PygameSoundPlayer: null
+
+Rag:
+  doc_path: documents/
+  emb_model: models/bge-small-zh
+  model_name: qwen2:1.5b
+  url: http://localhost:11434
+
+Memory:
+  dialogue_history_path: tmp/
+  memory_file: tmp/memory.json
+  model_name: qwen2:1.5b
+  url: http://localhost:11434
+
+TaskManager:
+  functions_call_name: plugins/function_calls_config.json
+  aigc_manus_enabled: true
