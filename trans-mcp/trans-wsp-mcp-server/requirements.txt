@@ -1,0 +1,13 @@
+# Python MCP SDK
+# mcp>=1.0.0  # 如果这是自定义包，需要通过其他方式安装
+
+# Web framework
+flask>=2.0.0
+
+# Other dependencies
+requests>=2.25.0
+
+# 如果mcp是自定义包，可能需要从源码安装
+# pip install git+https://github.com/your-org/mcp-sdk.git
+# 或者
+# pip install -e /path/to/mcp/sdk
