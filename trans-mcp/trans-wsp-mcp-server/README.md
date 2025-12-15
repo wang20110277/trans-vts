@@ -1,6 +1,6 @@
 # trans-wsp-mcp-server
 
-财富管理查询服务模块，基于Python MCP SDK构建，使用streamablehttp方式暴露服务。
+财富管理查询服务模块，基于Python FastMCP框架构建，使用streamablehttp方式暴露服务。
 
 ## 功能特性
 
@@ -11,18 +11,18 @@
 
 ## 环境管理
 
-本项目使用 Miniconda 管理环境，环境名称为 `trans-wsp-mcp`。
+本项目使用 Miniconda 管理环境，环境名称为 `trans-wsp-mcp-py310`（需要Python 3.10+）。
 
 ### 创建环境
 
 ```bash
-conda create -n trans-wsp-mcp python=3.8 -y
+conda create -n trans-wsp-mcp-py310 python=3.10 -y
 ```
 
 ### 激活环境
 
 ```bash
-conda activate trans-wsp-mcp
+conda activate trans-wsp-mcp-py310
 ```
 
 或者使用项目提供的脚本：
@@ -45,15 +45,6 @@ conda deactivate
 pip install -r requirements.txt
 ```
 
-注意：如果 `mcp` 是自定义SDK，则需要单独安装：
-```bash
-# 从源码安装
-pip install -e /path/to/mcp/sdk
-
-# 或从git仓库安装
-pip install git+https://github.com/your-org/mcp-sdk.git
-```
-
 ## 运行服务
 
 ### 方法1：直接运行
@@ -66,10 +57,16 @@ python src/main.py
 ./start_server.sh
 ```
 
+## 测试服务
+
+### 使用FastMCP客户端测试
+```bash
+python test_client.py
+```
+
 ## MCP服务端点
 
 - MCP服务端点: `/mcp`
-- 健康检查端点: `/health`
 
 ## 支持的工具
 
