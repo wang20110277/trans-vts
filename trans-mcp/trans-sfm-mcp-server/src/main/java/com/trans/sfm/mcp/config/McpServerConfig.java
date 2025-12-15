@@ -59,9 +59,8 @@ public class McpServerConfig {
     }
 
     @Bean
-    public FilterRegistrationBean mcpServerFilter() {
-        FilterRegistrationBean<SolonServletFilter> filter = new FilterRegistrationBean<>();
-        filter.setName("SolonFilter");
+    public FilterRegistrationBean<SolonServletFilter> mcpServerFilter() {
+        FilterRegistrationBean<SolonServletFilter> filter = new FilterRegistrationBean<>();        filter.setName("SolonFilter");
         filter.addUrlPatterns("/mcp/*");
         filter.setFilter(new SolonServletFilter());
         return filter;
